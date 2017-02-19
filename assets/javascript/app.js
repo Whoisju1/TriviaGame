@@ -121,14 +121,16 @@ var item = [{
 function nextQuestion(strtPg) { //press the submit button to get the questions & answers on the page
   counter += 1; //this counter travases the array of objects (that contain the Q&A). 
   console.log("counter: " + counter + ", item.length: " + item.length);
+    var secondsLeft = 15;
    if (counter <= item.length) {
-	var secondsLeft = 15;
 	clearInterval(timer);
 	var timer = setInterval(function() {
     secondsLeft--;
     printTime();
+    clearInterval(timer);
     console.log("secondsLeft: " + secondsLeft);
     if (secondsLeft === 0) {
+      clearInterval(timer);
       nextQuestion();	
     }
   }, 1000);
