@@ -1,0 +1,50 @@
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100%;
+	padding: 0;
+   }
+
+.main-container {
+	display: flex;
+	justify-content: center;
+	flex-flow: wrap column;
+	border: 2px solid green; 
+	height: inherit;
+	background-image: url("https://sumayia.neocities.org/Images/blue.jpg");
+	background-size: 100%;
+	
+}
+
+.container {
+	border: 1px solid gray;
+	width: 60%;
+	margin: 0 auto;
+	padding: 4%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	background-color: aliceblue;
+}
+
+h1 {
+	font-size: 5rem;
+	margin: auto;
+}
+
+.question {
+	width: 30%;
+	background-color: beige;
+	height: 20px;
+}
+
+.option-letter {
+	font-weight: bold;
+}
+
+.answer:hover {
+	font-size: 1.5rem;
+}
