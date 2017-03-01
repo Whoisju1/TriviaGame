@@ -20,8 +20,7 @@ var items = [
         "question": "The shortest runway on earth, not more than 1,300 feet long, can be found on which Caribbean island?",
         "choices": ["Barbabos", "Jamacia", "Saba", "Antigua"],
         "rightAnswer": "Saba"
-    }
-    , {
+    }, {
         "question": "Which island is known as the Nature Isle of the Caribbean?",
         "choices": ["Dominia", "Puerto Rico", "St. Martin", "Grenada"],
         "rightAnswer": "Dominia"
@@ -47,13 +46,18 @@ var items = [
 ];
 
 var count = -1,
-    timeRemaining;
-
+    firstCountDown,
+    secondCountDown,
+    answeredCorrectly = 0,
+    answeredWrongly = 0,
+    firstTimer,
+    secondTimer;
 
 //----------FUNCTION TO PRINT CONTENT ON THE PAGE--------------
 function contentSetter() {
     //print question 
-    $("#question").text((count+1)+". "+items[count].question);
+    "use strict";
+    $("#question").text((count + 1) + ". " + items[count].question);
 
     //print choices
 
@@ -67,41 +71,68 @@ function contentSetter() {
 
 
     //print Correct answer 
-    $("#answer").html("<span id='items-identifier'>THE ANSWER IS: </span>"+ items[count].rightAnswer);
+    $("#answer").html("<span id='items-identifier'>THE ANSWER IS: </span>" + items[count].rightAnswer);
+
+    //set value of respective radio buttons
+
+    $("#selection-btn1").val(items[count].choices[0]);
+    $("#selection-btn2").val(items[count].choices[1]);
+    $("#selection-btn3").val(items[count].choices[2]);
+    $("#selection-btn4").val(items[count].choices[3]);
 }
 
 //------------------CODE FOR START BUTTON----------------------
 
-var startBtn = $("#start-button").click(function () {
+$("#start-button").click(function () {
 
     //change content displayed
-    $("#timer").show();
+    $("#firstTimer").show();
     $("#start-page").hide();
-    QuesAndAns();
+    quesAndAns();
 })
 
 //-----------CODE FOR SUMBIT BUTTON-------------
 
-var submitBtn = $("#submit-btn").click(function () {
-    timeRemaining = 0;
-})
+$("#submit-btn").click(function () {
+    console.log("*******submit btn pressed****");
+    //    firstCountDown = 0;
+    $(this).data('clicked', true);
+});
+
+
+
+//------------SETTINGS FOR NEXT BUTTON------------------------
+
+$("#nxt-btn").click(function () {
+    console.log("*******NEXT QUESTION btn pressed****");
+    $(this).data('clicked', true);
+    quesAndAns()
+});
+
 
 //-------CODE FOR FUNCTION THAT PRINTS TRIVIA CONTENT----------
 
-function QuesAndAns() {
+function quesAndAns() {
+    "use strict";
+    console.log("---------quesAndAns functions executed------");
     //change content dislayed
     $("#answer-display-page").hide();
     $("#trivia-content").show();
     count++;
     contentSetter();
     console.log("count: " + count);
-    timeRemaining = 15;
-    var timer = setInterval(function () {
-        timeRemaining--;
-        console.log("timeRemaining :" + timeRemaining);
-        $("#countdown").text(timeRemaining);
-        if (timeRemaining === 0) {
-            clearInterval(timer);
+    firstCountDown = 15;
+
+    clearInterval(firstTimer);
+    firstTimer = setInterval(function () {
+        firstCountDown--;
+        console.log("firstCountDown :" + firstCountDown + " & secondCountDown: " + secondCountDown);
+        $("#countdown").text(firstCountDown);
+        if (firstCountDown < 1 || $("#submit-btn").data('clicked')) {
+            secondCountDown = 10;
+            clearInterval(firstTimer);
+            console.log("------------quesAndAns firstTimer alegedly cleared cause  submitBtn clicked------");
+            $("#submit-btn").data('clicked', false);
             answerDisplay();
         }
     }, 1000);
@@ -110,22 +141,38 @@ function QuesAndAns() {
 //-------CODE FOR FUNCTION THAT DISPLAYS ANSWER-------------
 
 function answerDisplay() {
+    "use strict";
+    console.log("---------answerDisplay functions executed------");
     //change content displayed
-    
+
     $("#trivia-content").hide();
     $("#answer-display-page").show();
+    var btnChecked = $("input[type=radio]:checked").val();
+    var correctAns = items[count].rightAnswer;
+    if (btnChecked === correctAns) {
+        answeredCorrectly++;
+        console.log("You Are Corret");
+    } else {
+        answeredWrongly++;
+        console.log("You Are Wrong");
+    }
+    $("input[type=radio]").prop('checked', false);
 
-    timeRemaining = 0;
-    timeRemaining = 10;
-    var timer = setInterval(function () {
-        timeRemaining--;
-        $("#countdown").text(timeRemaining);
-        console.log("timeRemaining :" + timeRemaining);
-        if (timeRemaining === 0) {
+    clearInterval(secondTimer);
+    secondCountDown = 10;
+    secondTimer = setInterval(function () {
+        secondCountDown--;
+        $("#countdown").text(secondCountDown);
+        console.log("Time Left :" + secondCountDown + " $ firstCountDown: " + firstCountDown);
+        if (secondCountDown < 1 || $("#nxt-btn").data('clicked')) {
             // Timer stops if time runs out or if sumbit is pressed
-            clearInterval(timer);
-            QuesAndAns();
+            $("#nxt-btn").data('clicked', false);
+            clearInterval(secondTimer);
+            console.log("------------secondTimer alegedly cleared----------");
+            secondTimer = 10
+            firstCountDown = 15;
+            console.log("...and secondTimer: " + secondTimer);
+            quesAndAns();
         }
     }, 1000);
-
 }
