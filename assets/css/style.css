@@ -27,6 +27,7 @@ body {
     margin: 10% auto;
     padding: 4%;
     background-color: white;
+    box-shadow: 0 4px 8px 0 #2d2d83, 0 6px 20px 0 #2d2d83;
 }
 
 .container #title {
@@ -45,7 +46,8 @@ body {
     margin: 7% auto 7% auto;
 }
 
-.container #start-page input, #submit-btn, #nxt-btn  {
+.btn {
+    background-color: #6ec2dc;
     padding: 0 2em;
     height: 2em;
     font-size: 2em;
@@ -54,9 +56,21 @@ body {
     color: #2d2d83;
 }
 
-.container #start-page input {
-	background-color: #6ec2dc;
-    border: 1px solid 
+.btn:hover {
+    background-color: #1f6eba;
+    color: aliceblue;
+    border: 1px double #6ec2dc;
+}
+
+.btn:active {
+    background-color: azure;
+    color: black;
+}
+
+label:hover {
+    text-decoration: underline;
+    color: #2d2d83;
+    text-shadow: 2px 2px 4px #2d2d83;
 }
 
 .container #trivia-content {
@@ -71,4 +85,32 @@ body {
 
 .container #answer-display-page {
     display: none;
+}
+
+#final-page {
+    display: none;
+}
+
+#items-identifier {
+    font-weight: bold;
+    color: darkgreen;
+}
+
+#question {
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#countdown {
+    font-weight: 800;
+    font-size: 248%;
+}
+
+#time-left {
+    font-weight: bold;
+}
+
+.final-page {
+    font-weight: bold;
+    font-size: 200%
 }

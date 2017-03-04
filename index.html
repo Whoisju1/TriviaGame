@@ -14,10 +14,14 @@
             <h1 id="title">
 				Totally Trivial Trivia!
 			</h1>
-            <div id="timer"><span id="time-left"> TIME LEFT: </span> <span id="countdown"> 15</span> seconds</div>
+            <div id="timer"><span id="time-left">
+                TIME LEFT: </span> <span id="countdown">15</span> seconds
+            </div>
+            <!--end of timer div-->
+            <br>
             <div id="start-page">
                 <div id="instructions">
-                    <input id="start-button" type="button" value="CLICK HERE TO BEGIN">
+                    <input id="start-button" class="btn" type="button" value="CLICK HERE TO BEGIN">
                 </div>
             </div>
             <!--end of start page-->
@@ -25,33 +29,41 @@
 
             <div id="trivia-content">
                 <form>
-                    <div id="question"></div> 
-                    <br>
+                    <div id="question"></div>
                     <br>
                     <input type="radio" id="selection-btn1" name="trivia-questions">
-                    <label for="selection-btn1" id="ans1"></label><br>
+                    <label for="selection-btn1" id="ans1"></label>
+                    <br>
                     <input type="radio" id="selection-btn2" name="trivia-questions">
-                    <label for="selection-btn2" id="ans2"></label><br>
+                    <label for="selection-btn2" id="ans2"></label>
+                    <br>
                     <input type="radio" id="selection-btn3" name="trivia-questions">
-                    <label for="selection-btn3" id="ans3"></label><br>
+                    <label for="selection-btn3" id="ans3"></label>
+                    <br>
                     <input type="radio" id="selection-btn4" name="trivia-questions">
                     <label for="selection-btn4" id="ans4"></label>
                     <br>
                     <br>
-                    <input type="button" value="SUBMIT ANSWER" id="submit-btn">
+                    <input type="button" value="SUBMIT ANSWER" id="submit-btn" class="btn">
                 </form>
             </div>
             <!--end of trivia-content -->
             <div id="answer-display-page">
-                <div id="tick-andE-ex">
-                    
-                </div> <!-- end of tick-andE-ex -->
+                <div id="tick-and-ex">
+
+                </div>
+                <!-- end of tick-and-ex -->
+                <div id="correct-or-wrong">
+                </div>
+                <!--correct-or-wrong-->
                 <p id="answer"></p>
                 <div id="canvas">
-                    
-                </div> <!--end of canvas -->
-                <button id="nxt-btn">NEXT QUESTION</button>
+
+                </div>
+                <!--end of canvas -->
+                <button id="nxt-btn" class="btn">NEXT</button>
             </div>
+
         </div>
     </div>
     <script src="assets/javascript/app.js "></script>
